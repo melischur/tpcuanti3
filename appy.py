@@ -2,8 +2,9 @@
 
 import sqlite3
 
+# Función para crear la tabla si no existe
 def create_table():
-    conn = sqlite3.connect('sqlite.db')
+    conn = sqlite3.connect('projects.db')
     c = conn.cursor()
     c.execute('''
         CREATE TABLE IF NOT EXISTS projects (
@@ -16,19 +17,8 @@ def create_table():
     conn.commit()
     conn.close()
 
-def get_projects():
-    conn = sqlite3.connect('sqlite.db')
-    c = conn.cursor()
-    c.execute('SELECT title, description, author FROM projects')
-    data = c.fetchall()
-    conn.close()
-    return data
-
-# Asegúrate de que la tabla esté creada antes de hacer cualquier consulta
+# Llamar a la función para crear la tabla antes de hacer cualquier otra operación
 create_table()
-
-# Ahora puedes proceder a recuperar proyectos
-projects = get_projects()
 
 import streamlit as st
 import sqlite3
