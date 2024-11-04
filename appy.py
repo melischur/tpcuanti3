@@ -120,10 +120,17 @@ st.header('Subí tu proyecto para facilitar su visibilizacion y la gestión de v
 title = st.text_input('Título')
 description = st.text_area('Descripción')
 author = st.text_input('Autor')
+pdf_file = st.file_uploader("Sube el archivo PDF del proyecto (opcional)", type=["pdf"])
 
 if st.button('Subir'):
     if title and description and author:
         add_project(title, description, author)
+        st.success('Proyecto subido con éxito')
+    else:
+        st.error('Por favor, completa todos los campos')
+        # Leer el archivo PDF si existe
+        pdf_data = pdf_file.read() if pdf_file is not None else None
+        add_project(title, description, author, pdf_data)
         st.success('Proyecto subido con éxito')
     else:
         st.error('Por favor, completa todos los campos')
@@ -136,6 +143,8 @@ for project in projects:
     st.subheader(project[0])
     st.write(f"**Descripción:** {project[1]}")
     st.write(f"**Autor:** {project[2]}")
-
+ if project[3]:  # Si hay un archivo PDF
+        st.download_button("Descargar PDF", data=project[3], file_name="proyecto.pdf", mime="application/pdf")
+     
 # Cerrar la conexión
 conn.close()
