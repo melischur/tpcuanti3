@@ -55,7 +55,7 @@ def get_projects():
     return c.fetchall()
 
 # Interfaz de Streamlit
-st.title('Proyectos de la Comunidad Universitaria')
+st.title('Proyectos que no tengo ganas de hacer')
 
 # Formulario para subir proyectos
 st.header('Subir un Proyecto')
