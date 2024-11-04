@@ -141,7 +141,8 @@ for project in projects:
     st.subheader(project[0])
     st.write(f"**Descripción:** {project[1]}")
     st.write(f"**Autor:** {project[2]}")
- if project[3]:  # Si hay un archivo PDF
+ if project[3]:  
+     # Si hay un archivo PDF
         st.download_button("Descargar PDF", data=project[3], file_name="proyecto.pdf", mime="application/pdf")
      
 # Cerrar la conexión
