@@ -44,7 +44,7 @@ page_style = """
 <style>
     /* Cambia el color de fondo de la página */
     .stApp {
-        background-color: #f0f8ff;
+        background-color: #1f93f9;
     }
 
     /* Cambia el estilo de los botones */
