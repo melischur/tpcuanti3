@@ -15,7 +15,7 @@ def create_table():
     ''')
     conn.commit()
     conn.close()
-    
+
 # Llamar a la función para crear la tabla antes de hacer cualquier otra operación
 create_table()
 
@@ -32,7 +32,6 @@ page_style = """
     .stApp {
         background-color: #1f93f9;
     }
-
     /* Estilo para el título */
     h1 {
         color: white;
@@ -42,7 +41,6 @@ page_style = """
         margin-top: 20px;
         margin-bottom: 10px;
     }
-
     /* Estilo para el subtítulo */
     h2 {
         color: white;
@@ -52,7 +50,6 @@ page_style = """
         margin-top: 5px;
         margin-bottom: 20px;
     }
-
     /* Cambia el estilo de los botones */
     div.stButton > button {
         background-color: #4CAF50;
@@ -77,6 +74,10 @@ page_style = """
 # Aplica el CSS con st.markdown
 st.markdown(page_style, unsafe_allow_html=True)
 
+# Interfaz de Streamlit
+st.title('Plataforma para la Gestión y Publicación de proyectos comunitarios y solidarios')
+# Subtítulo
+st.header('Subí tu proyecto para facilitar su visibilización y la gestión de voluntarios')
 # Base de datos
 def create_table():
     conn = sqlite3.connect('projects.db')
