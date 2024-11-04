@@ -1,23 +1,4 @@
 # tpcuanti3
-import sqlite3
-
-# Función para crear la tabla si no existe
-def create_table():
-    conn = sqlite3.connect('projects.db')
-    c = conn.cursor()
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS projects (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL,
-            description TEXT NOT NULL,
-            author TEXT NOT NULL
-        )
-    ''')
-    conn.commit()
-    conn.close()
-    
-# Llamar a la función para crear la tabla antes de hacer cualquier otra operación
-create_table()
 
 import sqlite3
 import streamlit as st
@@ -77,7 +58,7 @@ page_style = """
 # Aplica el CSS con st.markdown
 st.markdown(page_style, unsafe_allow_html=True)
 
-# Base de datos
+# Función para crear la tabla si no existe (incluyendo columna para el archivo PDF)
 def create_table():
     conn = sqlite3.connect('projects.db')
     c = conn.cursor()
@@ -86,7 +67,8 @@ def create_table():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
             description TEXT NOT NULL,
-            author TEXT NOT NULL
+            author TEXT NOT NULL,
+            pdf BLOB
         )
     ''')
     conn.commit()
@@ -95,28 +77,31 @@ def create_table():
 # Llamar a la función para crear la tabla antes de hacer cualquier otra operación
 create_table()
 
-# Conexión a la base de datos
-conn = sqlite3.connect('projects.db')
-c = conn.cursor()
-
-# Función para agregar proyectos
-def add_project(title, description, author):
+# Función para agregar proyectos (incluyendo el archivo PDF)
+def add_project(title, description, author, pdf_file):
+    conn = sqlite3.connect('projects.db')
+    c = conn.cursor()
     c.execute('''
-        INSERT INTO projects (title, description, author)
-        VALUES (?, ?, ?)
-    ''', (title, description, author))
+        INSERT INTO projects (title, description, author, pdf)
+        VALUES (?, ?, ?, ?)
+    ''', (title, description, author, pdf_file))
     conn.commit()
+    conn.close()
 
 # Función para obtener todos los proyectos
 def get_projects():
-    c.execute('SELECT title, description, author FROM projects')
-    return c.fetchall()
+    conn = sqlite3.connect('projects.db')
+    c = conn.cursor()
+    c.execute('SELECT title, description, author, pdf FROM projects')
+    projects = c.fetchall()
+    conn.close()
+    return projects
 
 # Interfaz de Streamlit
-st.title('Plataforma para la Gestión y Publicación de proyectos  comunitarios y solidarios')
+st.title('Plataforma para la Gestión y Publicación de proyectos comunitarios y solidarios')
 
 # Formulario para subir proyectos
-st.header('Subí tu proyecto para facilitar su visibilizacion y la gestión de voluntarios')
+st.header('Subí tu proyecto para facilitar su visibilización y la gestión de voluntarios')
 title = st.text_input('Título')
 description = st.text_area('Descripción')
 author = st.text_input('Autor')
@@ -124,14 +109,12 @@ pdf_file = st.file_uploader("Sube el archivo PDF del proyecto (opcional)", type=
 
 if st.button('Subir'):
     if title and description and author:
-        add_project(title, description, author)
-        st.success('Proyecto subido con éxito')
-    else:
-        st.error('Por favor, completa todos los campos')
         # Leer el archivo PDF si existe
         pdf_data = pdf_file.read() if pdf_file is not None else None
         add_project(title, description, author, pdf_data)
         st.success('Proyecto subido con éxito')
+    else:
+        st.error('Por favor, completa todos los campos')
 
 # Mostrar proyectos
 st.header('Ver Proyectos')
@@ -141,9 +124,5 @@ for project in projects:
     st.subheader(project[0])
     st.write(f"**Descripción:** {project[1]}")
     st.write(f"**Autor:** {project[2]}")
-    
- if project[3]:  
+    if project[3]:  # Si hay un archivo PDF
         st.download_button("Descargar PDF", data=project[3], file_name="proyecto.pdf", mime="application/pdf")
-     
-# Cerrar la conexión
-conn.close()
