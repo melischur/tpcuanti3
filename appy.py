@@ -25,7 +25,7 @@ import pandas as pd
 
 st.image("./1000048660 (1) (1).png")
 
-# Código CSS para cambiar el color de fondo de la página y los botones
+# Código CSS para cambiar el estilo del título, subtítulo y fondo
 page_style = """
 <style>
     /* Cambia el color de fondo de la página */
@@ -33,21 +33,40 @@ page_style = """
         background-color: #1f93f9;
     }
 
+    /* Estilo para el título */
+    h1 {
+        color: white;
+        font-size: 2.5em;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    /* Estilo para el subtítulo */
+    h2 {
+        color: white;
+        font-size: 1.5em;
+        font-weight: normal;
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+
     /* Cambia el estilo de los botones */
     div.stButton > button {
-        background-color: #4CAF50; /* Color de fondo del botón */
-        color: white; /* Color del texto del botón */
+        background-color: #4CAF50;
+        color: white;
         border: none;
         padding: 10px 20px;
         text-align: center;
-        text-decoration: none;
-        display: inline-block;
         font-size: 16px;
         margin: 4px 2px;
         transition-duration: 0.4s;
         cursor: pointer;
         border-radius: 8px;
     }
+    
     /* Cambia el color al pasar el mouse por encima */
     div.stButton > button:hover {
         background-color: #45a049;
@@ -57,6 +76,12 @@ page_style = """
 
 # Aplica el CSS con st.markdown
 st.markdown(page_style, unsafe_allow_html=True)
+
+# Interfaz de Streamlit
+st.title('Plataforma para la Gestión y Publicación de proyectos comunitarios y solidarios')
+
+# Subtítulo
+st.header('Subí tu proyecto para facilitar su visibilización y la gestión de voluntarios')
 
 # Base de datos
 def create_table():
