@@ -1,20 +1,4 @@
 # tpcuanti3
-import streamlit as st
-
-# Código CSS para cambiar el color de fondo
-page_bg_color = """
-<style>
-    /* Cambia el color de fondo de la página */
-    .stApp {
-        background-color: #1f93f9; /* Aquí pones el color que prefieras */
-    }
-</style>
-"""
-
-# Aplica el CSS con st.markdown
-st.markdown(page_bg_color, unsafe_allow_html=True)
-
-
 import sqlite3
 
 # Función para crear la tabla si no existe
