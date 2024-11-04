@@ -116,7 +116,7 @@ def get_projects():
 st.title('Plataforma para la Gestión y Publicación de proyectos  comunitarios y solidarios')
 
 # Formulario para subir proyectos
-st.header('Subí tu proyecto para facilitar su visibilizacion y la gestión de voluntarios')
+st.subheader('Subí tu proyecto para facilitar su visibilizacion y la gestión de voluntarios')
 title = st.text_input('Título')
 description = st.text_area('Descripción')
 author = st.text_input('Autor')
