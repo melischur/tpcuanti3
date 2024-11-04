@@ -132,8 +132,6 @@ if st.button('Subir'):
         pdf_data = pdf_file.read() if pdf_file is not None else None
         add_project(title, description, author, pdf_data)
         st.success('Proyecto subido con éxito')
-    else:
-        st.error('Por favor, completa todos los campos')
 
 # Mostrar proyectos
 st.header('Ver Proyectos')
