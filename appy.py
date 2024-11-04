@@ -35,9 +35,60 @@ def create_table():
 # Llamar a la función para crear la tabla antes de hacer cualquier otra operación
 create_table()
 
-import streamlit as st
 import sqlite3
+import streamlit as st
 import pandas as pd
+
+# Código CSS para cambiar el color de fondo de la página y los botones
+page_style = """
+<style>
+    /* Cambia el color de fondo de la página */
+    .stApp {
+        background-color: #f0f8ff;
+    }
+
+    /* Cambia el estilo de los botones */
+    div.stButton > button {
+        background-color: #4CAF50; /* Color de fondo del botón */
+        color: white; /* Color del texto del botón */
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+    /* Cambia el color al pasar el mouse por encima */
+    div.stButton > button:hover {
+        background-color: #45a049;
+    }
+</style>
+"""
+
+# Aplica el CSS con st.markdown
+st.markdown(page_style, unsafe_allow_html=True)
+
+# Base de datos
+def create_table():
+    conn = sqlite3.connect('projects.db')
+    c = conn.cursor()
+    c.execute('''
+        CREATE TABLE IF NOT EXISTS projects (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT NOT NULL,
+            description TEXT NOT NULL,
+            author TEXT NOT NULL
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+# Llamar a la función para crear la tabla antes de hacer cualquier otra operación
+create_table()
 
 # Conexión a la base de datos
 conn = sqlite3.connect('projects.db')
@@ -57,7 +108,7 @@ def get_projects():
     return c.fetchall()
 
 # Interfaz de Streamlit
-st.title('Red solidaria')
+st.title('Proyectos de la Comunidad Universitaria')
 
 # Formulario para subir proyectos
 st.header('Subir un Proyecto')
