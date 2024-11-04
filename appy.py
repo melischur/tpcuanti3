@@ -77,12 +77,6 @@ page_style = """
 # Aplica el CSS con st.markdown
 st.markdown(page_style, unsafe_allow_html=True)
 
-# Interfaz de Streamlit
-st.title('Plataforma para la Gestión y Publicación de proyectos comunitarios y solidarios')
-
-# Subtítulo
-st.header('Subí tu proyecto para facilitar su visibilización y la gestión de voluntarios')
-
 # Base de datos
 def create_table():
     conn = sqlite3.connect('projects.db')
