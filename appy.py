@@ -17,6 +17,20 @@ def create_table():
     conn.commit()
     conn.close()
 
+# Configura el color de fondo usando CSS personalizado
+st.markdown(
+    """
+    <style>
+    .main {
+        background-color: #f0f8ff;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+
 # Llamar a la función para crear la tabla antes de hacer cualquier otra operación
 create_table()
 
