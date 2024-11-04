@@ -23,7 +23,7 @@ import sqlite3
 import streamlit as st
 import pandas as pd
 
-st.image("./1000048660 (1).png")
+st.image("./1000048660 (1) (1).png")
 
 # Código CSS para cambiar el color de fondo de la página y los botones
 page_style = """
