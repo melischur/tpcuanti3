@@ -1,4 +1,17 @@
 # tpcuanti3
+import streamlit as st
+
+# Configura el color de fondo usando CSS personalizado
+st.markdown(
+    """
+    <style>
+    .main {
+        background-color: #1f93f9;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 import sqlite3
 
@@ -17,22 +30,6 @@ def create_table():
     conn.commit()
     conn.close()
     
-import streamlit as st
-
-# Configura el color de fondo usando CSS personalizado
-st.markdown(
-    """
-    <style>
-    .main {
-        background-color: #1f93f9;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-
-
 # Llamar a la función para crear la tabla antes de hacer cualquier otra operación
 create_table()
 
