@@ -16,6 +16,8 @@ def create_table():
     ''')
     conn.commit()
     conn.close()
+    
+import streamlit as st
 
 # Configura el color de fondo usando CSS personalizado
 st.markdown(
