@@ -94,10 +94,10 @@ def get_projects():
     return c.fetchall()
 
 # Interfaz de Streamlit
-st.title('Proyectos de la Comunidad Universitaria')
+st.title('Plataforma para la Gestión y Publicación de proyectos  comunitarios y solidarios')
 
 # Formulario para subir proyectos
-st.header('Subir un Proyecto')
+st.header('Subí tu proyecto para facilitar su visibilizacion y la gestión de voluntarios')
 title = st.text_input('Título')
 description = st.text_area('Descripción')
 author = st.text_input('Autor')
