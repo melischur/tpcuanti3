@@ -24,7 +24,7 @@ st.markdown(
     """
     <style>
     .main {
-        background-color: #f0f8ff;
+        background-color: #1f93f9;
     }
     </style>
     """,
